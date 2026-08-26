@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Contractor Calculators</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +16,7 @@
     --marigold-ink: #241d00;
     --sage: #93c47d;
     --sage-ink: #12240b;
+    --red: #e06666;
 
     --display: "Big Shoulders Display", "Arial Narrow", Arial, sans-serif;
     --body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
@@ -23,12 +25,20 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   html, body {
     background: var(--ground);
     color: var(--ink);
     font-family: var(--body);
     font-size: 17px;
     line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
   }
 
   body { overflow-x: hidden; }
@@ -52,8 +62,13 @@
   /* ---------- header ---------- */
 
   header {
-    padding: 28px 0;
+    padding: 22px 0;
     border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 10;
   }
 
   .header-row {
@@ -66,29 +81,37 @@
   .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
+    gap: 16px;
+    text-decoration: none;
   }
 
   .brand-mark {
-    width: 34px;
-    height: 34px;
+    width: 46px;
+    height: 46px;
     background: var(--marigold);
-    border-radius: 8px;
+    border-radius: 11px;
     display: grid;
-    grid-template-rows: 9px 1fr;
-    gap: 3px;
-    padding: 4px;
+    grid-template-rows: 12px 1fr;
+    gap: 4px;
+    padding: 6px;
     flex-shrink: 0;
   }
-  .brand-mark .screen { background: var(--marigold-ink); border-radius: 2px; }
-  .brand-mark .keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .brand-mark .keys div { background: var(--marigold-ink); border-radius: 1.5px; }
+  .brand-mark .screen { background: var(--marigold-ink); border-radius: 3px; }
+  .brand-mark .keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .brand-mark .keys div { background: var(--marigold-ink); border-radius: 2px; }
 
+  .brand-word {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .brand-word .accent { color: var(--marigold); }
+
+  header nav { display: flex; align-items: center; gap: 28px; }
   header nav a {
     font-family: var(--body);
     font-weight: 600;
@@ -110,11 +133,8 @@
   /* ---------- hero ---------- */
 
   .hero {
-    padding: 88px 0 96px;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 56px;
-    align-items: center;
+    padding: 88px 0 80px;
+    text-align: center;
   }
 
   .eyebrow {
@@ -128,20 +148,22 @@
   }
 
   .hero h1 {
-    font-size: clamp(44px, 6vw, 68px);
-    line-height: 1.02;
-    margin-bottom: 24px;
+    font-size: clamp(36px, 5.4vw, 60px);
+    line-height: 1.05;
+    margin: 0 auto 24px;
+    max-width: 30ch;
   }
-  .hero h1 .accent { color: var(--sage); }
+  .hero h1 .accent { color: var(--red); }
+  .hero h1 .accent-green { color: var(--sage); }
 
   .hero p.lede {
     font-size: 19px;
     color: var(--ink-dim);
-    max-width: 46ch;
-    margin-bottom: 36px;
+    max-width: 52ch;
+    margin: 0 auto 36px;
   }
 
-  .cta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .cta-row { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
 
   .btn {
     display: inline-flex;
@@ -162,165 +184,171 @@
   .btn-ghost { color: var(--ink-dim); font-weight: 600; }
   .btn-ghost:hover { color: var(--ink); }
 
-  /* ---------- sheet preview card ---------- */
-
-  .sheet-card {
-    background: #ffffff;
-    border-radius: 14px;
-    overflow: hidden;
-    transform: rotate(1deg);
-    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
-    border: 2px solid #17181b;
-  }
-  .sheet-card .sc-head {
-    background: #ffffff;
-    color: #111111;
-    font-family: var(--body);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.04em;
-    text-align: center;
-    padding: 12px 0;
-    border-bottom: 2px solid #17181b;
-  }
-  .sc-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    border-bottom: 1px solid #d8d8d8;
-  }
-  .sc-row:last-child { border-bottom: none; }
-  .sc-row .sc-lbl {
-    font-family: var(--body);
-    font-weight: 500;
-    font-size: 13.5px;
-    color: #1a1a1a;
-    background: #ffffff;
-    padding: 10px 14px;
-  }
-  .sc-row .sc-val {
-    font-family: var(--mono);
-    font-variant-numeric: tabular-nums;
-    font-weight: 600;
-    font-size: 13.5px;
-    color: #111111;
-    padding: 10px 16px;
-    min-width: 96px;
-    text-align: right;
-  }
-  .sc-row.input-once .sc-val { background: #ffd966; }
-  .sc-row.input-job .sc-val { background: #fff2cc; }
-  .sc-row.expense .sc-val { background: #ea9999; }
-  .sc-row.profit .sc-val { background: #b6d7a8; font-weight: 700; }
-  .sc-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-  }
-  .sc-legend span {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 12.5px;
-    color: var(--ink-dim);
-  }
-  .sc-legend i {
-    width: 11px; height: 11px; border-radius: 3px; display: inline-block;
-  }
-
   /* ---------- section shell ---------- */
 
-  section { padding: 76px 0; }
+  section { padding: 76px 0; scroll-margin-top: 92px; }
+  main#top { scroll-margin-top: 0; }
   .section-head { max-width: 620px; margin-bottom: 48px; }
+  .section-head.centered { max-width: 640px; margin-left: auto; margin-right: auto; text-align: center; }
   .section-head .eyebrow { margin-bottom: 14px; }
   .section-head h2 { font-size: clamp(30px, 3.6vw, 40px); margin-bottom: 14px; }
   .section-head p { color: var(--ink-dim); font-size: 17px; }
 
-  /* ---------- spec list ---------- */
+  /* ---------- calculator catalog ---------- */
 
-  .spec-list { display: flex; flex-direction: column; }
-  .spec-row {
+  .calc-grid {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 28px;
-    padding: 26px 0;
-    border-top: 1px solid var(--line);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
   }
-  .spec-row:last-child { border-bottom: 1px solid var(--line); }
-  .spec-row .spec-label {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--marigold);
-  }
-  .spec-row p { color: var(--ink-dim); max-width: 56ch; }
-  .spec-row strong { color: var(--ink); font-weight: 600; }
 
-  /* ---------- pricing ---------- */
-
-  .price-panel {
+  .calc-card {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 48px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+  }
+  .calc-card:hover, .calc-card:focus-visible {
+    transform: translateY(-3px);
+    border-color: var(--marigold);
+  }
+  .calc-card:focus-visible { outline: 2px solid var(--marigold); outline-offset: 3px; }
+
+  .calc-card .cc-thumb {
+    aspect-ratio: 16 / 10;
+    background: #808080;
+    display: flex;
     align-items: center;
-    gap: 40px;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
   }
-  .price-amount {
-    font-family: var(--display);
-    font-size: 76px;
-    line-height: 0.9;
-    color: var(--marigold);
+  .calc-card .cc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .calc-card .cc-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--sage);
+    color: var(--sage-ink);
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 999px;
   }
-  .price-mid h3 { font-size: 22px; margin-bottom: 8px; text-transform: none; }
-  .price-mid p { color: var(--ink-dim); font-size: 15px; }
-  .price-tags { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
-  .price-tag {
+
+  .calc-card .cc-body {
+    padding: 22px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .calc-card .cc-trade {
     font-family: var(--body);
     font-weight: 700;
     font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--sage);
-    background: rgba(147,196,125,0.12);
-    border: 1px solid rgba(147,196,125,0.3);
-    padding: 6px 12px;
-    border-radius: 999px;
+    color: var(--marigold);
+    margin-bottom: 8px;
+  }
+  .calc-card h3 {
+    font-size: 22px;
+    text-transform: none;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .calc-card .cc-desc {
+    color: var(--ink-dim);
+    font-size: 14.5px;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .calc-card .cc-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .calc-card .cc-price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: var(--mono);
+  }
+  .calc-card .cc-price .was {
+    color: var(--ink-faint);
+    text-decoration: line-through;
+    font-size: 14px;
+  }
+  .calc-card .cc-price .now {
+    color: var(--ink);
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .calc-card .cc-cta {
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--marigold-ink);
+    background: var(--marigold);
+    padding: 10px 16px;
+    border-radius: 8px;
     white-space: nowrap;
   }
 
-  /* ---------- trust strip ---------- */
-
-  .trust {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 40px;
+  /* coming soon card */
+  .calc-card.soon {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-style: dashed;
+    cursor: default;
   }
-  .trust span {
-    font-size: 14px;
-    color: var(--ink-dim);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    padding: 9px 16px;
-    border-radius: 999px;
-  }
+  .calc-card.soon:hover { transform: none; border-color: var(--line); }
+  .calc-card.soon .cc-body { align-items: center; justify-content: center; flex: none; padding: 44px 22px; }
+  .calc-card.soon .cc-trade { color: var(--ink-faint); margin-bottom: 12px; }
+  .calc-card.soon h3 { color: var(--ink-dim); font-size: 19px; }
 
   /* ---------- about ---------- */
 
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: start;
+    gap: 48px;
+    align-items: center;
   }
+  .about-grid .about-photo {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .about-grid .about-photo img { width: 100%; display: block; }
   .about-grid p { color: var(--ink-dim); margin-bottom: 18px; }
   .about-grid p:last-child { margin-bottom: 0; }
   .about-grid strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- faq ---------- */
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 36px 32px;
+  }
+  .faq-item h3 {
+    font-size: 17px;
+    text-transform: none;
+    margin-bottom: 10px;
+    letter-spacing: 0;
+  }
+  .faq-item p { color: var(--ink-dim); font-size: 15px; }
 
   /* ---------- footer ---------- */
 
@@ -340,64 +368,44 @@
   .foot-links a:focus-visible { outline: 2px solid var(--marigold); outline-offset: 3px; }
 
   @media (max-width: 780px) {
-    .hero { grid-template-columns: 1fr; padding-top: 56px; }
-    .quote-card { transform: none; }
     .about-grid { grid-template-columns: 1fr; }
-    .spec-row { grid-template-columns: 1fr; gap: 10px; }
-    .price-panel { grid-template-columns: 1fr; text-align: left; }
-    .price-tags { align-items: flex-start; }
+    .faq-grid { grid-template-columns: 1fr; gap: 28px; }
+    header nav { display: none; }
+    .brand-word { font-size: 21px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .btn { transition: none; }
+    .btn, .calc-card { transition: none; }
   }
 </style>
 
 <header>
   <div class="wrap header-row">
-    <div class="brand">
+    <a class="brand" href="#">
       <span class="brand-mark" aria-hidden="true">
         <span class="screen"></span>
         <span class="keys"><div></div><div></div><div></div></span>
       </span>
-      Contractor Calculators
-    </div>
+      <span class="brand-word">Contractor <span class="accent">Calculators</span></span>
+    </a>
     <nav>
-      <a href="#pricing">Pricing</a>
+      <a href="#calculators">Calculators</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
     </nav>
   </div>
 </header>
 
 <div class="stripe" aria-hidden="true"></div>
 
-<main>
+<main id="top">
   <section class="hero">
-    <div class="wrap" style="display:contents;">
-      <div>
-        <div class="eyebrow">For asphalt maintenance contractors</div>
-        <h1>Price the job.<br>Know the <span class="accent">profit</span>.</h1>
-        <p class="lede">A job-pricing spreadsheet built by a contractor, for contractors — sealcoating, crack sealing, line striping, and pothole patching, priced with your real costs instead of a guess.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://contractorcalculators.lemonsqueezy.com/checkout/buy/580acf83-5670-45e1-86c9-c511995286c3" data-cta="buy">Get the calculator — $29</a>
-          <a class="btn btn-ghost" href="#whats-inside">See what's inside ↓</a>
-        </div>
-      </div>
-      <div>
-        <div class="sheet-card">
-          <div class="sc-head">SEALCOATING</div>
-          <div class="sc-row input-once"><span class="sc-lbl">Sealer Cost per gal.</span><span class="sc-val">$3.50</span></div>
-          <div class="sc-row input-once"><span class="sc-lbl">Sq. Ft. per gal.</span><span class="sc-val">65</span></div>
-          <div class="sc-row input-job"><span class="sc-lbl">Sq. Ft. Total</span><span class="sc-val">7,420</span></div>
-          <div class="sc-row input-job"><span class="sc-lbl">Customer Price per sq. ft.</span><span class="sc-val">$0.21</span></div>
-          <div class="sc-row expense"><span class="sc-lbl">Costs of Materials</span><span class="sc-val">$402.50</span></div>
-          <div class="sc-row profit"><span class="sc-lbl">Profit</span><span class="sc-val">$1,038.20</span></div>
-        </div>
-        <div class="sc-legend">
-          <span><i style="background:#ffd966;"></i>One-time input</span>
-          <span><i style="background:#fff2cc;"></i>Every-job input</span>
-          <span><i style="background:#ea9999;"></i>Expense</span>
-          <span><i style="background:#b6d7a8;"></i>Profit</span>
-        </div>
+    <div class="wrap">
+      <h1>Stop <span class="accent">flying blind</span> on price.<br>Know your costs. <span class="accent-green">Know your profit.</span></h1>
+      <p class="lede">Job-pricing calculators built by a working contractor, for contractors — priced with your real costs instead of a guess.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#calculators">Browse calculators ↓</a>
+        <a class="btn btn-ghost" href="#about">Why we built this</a>
       </div>
     </div>
   </section>
@@ -405,64 +413,35 @@
 
 <div class="stripe" aria-hidden="true"></div>
 
-<section id="whats-inside">
+<section id="calculators">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">What's inside</div>
-      <h2>One sheet, every cost that actually hits your margin.</h2>
-      <p>Not a price-per-square-foot guess. Every input feeds a real cost chain, down to the fuel in your truck.</p>
+      <div class="eyebrow">Calculators</div>
+      <h2>Pick your trade.</h2>
+      <p>Each calculator is sold separately, so you only pay for the trades you actually need.</p>
     </div>
-    <div class="spec-list">
-      <div class="spec-row">
-        <div class="spec-label">Four services</div>
-        <p><strong>Sealcoating, crack sealing, line striping, and pothole patching</strong> — each priced by its own unit (square footage, linear footage, material volume), all in one sheet.</p>
+    <div class="calc-grid">
+      <a class="calc-card" href="https://payhip.com/b/wE6RA" data-cta="buy">
+        <div class="cc-thumb">
+          <img src="asphalt-calculator-cover.png" alt="Asphalt Maintenance Job Pricing Calculator preview">
+          <span class="cc-badge">On sale</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-trade">Asphalt Maintenance</div>
+          <h3>Job Pricing Calculator</h3>
+          <p class="cc-desc">Prices sealcoating, crack sealing, line striping &amp; pothole patching — with your real material, labor, and overhead costs built in.</p>
+          <div class="cc-foot">
+            <div class="cc-price"><span class="was">$69</span><span class="now">$39</span></div>
+            <span class="cc-cta">Get it →</span>
+          </div>
+        </div>
+      </a>
+      <div class="calc-card soon">
+        <div class="cc-body">
+          <div class="cc-trade">More trades</div>
+          <h3>Coming soon</h3>
+        </div>
       </div>
-      <div class="spec-row">
-        <div class="spec-label">Real cost stack</div>
-        <p>Materials, crew labor, fuel, and business overhead (equipment depreciation, insurance, shop rent) are all built into the math — so <strong>"profit" means what's actually left</strong>, not gross revenue.</p>
-      </div>
-      <div class="spec-row">
-        <div class="spec-label">Pothole calculator</div>
-        <p>A built-in tool converts length × width × depth straight into material needed — no separate scratch math.</p>
-      </div>
-      <div class="spec-row">
-        <div class="spec-label">Discount engine</div>
-        <p>Offer a deal on one line item and see exactly what it costs you, before you say the number out loud.</p>
-      </div>
-      <div class="spec-row">
-        <div class="spec-label">Locked formulas</div>
-        <p>The math is protected so a stray keystroke can't break it. A full <strong>Start Here guide</strong> walks through setup step by step.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="stripe" aria-hidden="true"></div>
-
-<section id="pricing">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Pricing</div>
-      <h2>One price. Yours for good.</h2>
-    </div>
-    <div class="price-panel">
-      <div class="price-amount">$29</div>
-      <div class="price-mid">
-        <h3>One-time purchase</h3>
-        <p>No subscription, no recurring fee. Buy it once, use it on every job from here on.</p>
-      </div>
-      <div class="price-tags">
-        <span class="price-tag">Instant download</span>
-        <span class="price-tag">Excel · Sheets · Numbers</span>
-      </div>
-    </div>
-    <div class="trust">
-      <span>Built from a real, working sealcoating business</span>
-      <span>Formulas verified against real job numbers</span>
-      <span>One .xlsx file, yours to keep</span>
-    </div>
-    <div class="cta-row" style="margin-top:36px;">
-      <a class="btn btn-primary" href="https://contractorcalculators.lemonsqueezy.com/checkout/buy/580acf83-5670-45e1-86c9-c511995286c3" data-cta="buy">Get the calculator — $29</a>
     </div>
   </div>
 </section>
@@ -471,13 +450,47 @@
 
 <section id="about">
   <div class="wrap about-grid">
-    <div>
-      <div class="eyebrow">About</div>
-      <h2 style="font-size: clamp(26px, 3vw, 32px); margin-bottom: 20px;">Built on the truck, not in a boardroom.</h2>
+    <div class="about-photo">
+      <img src="about-photo.jpg" alt="A contractor striping a parking lot at night">
     </div>
     <div>
-      <p><strong>Contractor Calculators</strong> makes pricing tools for tradespeople who are tired of guessing. The asphalt maintenance calculator started as an internal spreadsheet for a working sealcoating and paving business, refined over real jobs before it was ever meant to be sold.</p>
-      <p>No fluff, no dashboards you'll never open — just the numbers that decide whether a job was worth taking.</p>
+      <div class="eyebrow">About</div>
+      <h2 style="font-size: clamp(26px, 3vw, 32px); margin-bottom: 20px;">Built by contractors, for contractors.</h2>
+      <p><strong>Contractor Calculators</strong> makes pricing tools for tradespeople who are tired of guessing. Every calculator starts as a real spreadsheet, built and refined on actual jobs, before it's ever cleaned up and sold.</p>
+      <p>No fluff, no dashboards you'll never open — just the numbers that show you exactly how profitable a job will be before you price it.</p>
+    </div>
+  </div>
+</section>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head centered">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions, answered.</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Does it work in Excel or Google Sheets?</h3>
+        <p>Both. Every calculator is a standard .xlsx file, so it opens in Excel and works in Google Sheets too. No plug-ins or special software needed.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if I mess up the formulas?</h3>
+        <p>You can't. Every formula cell is locked, so you can type in your numbers without any risk of accidentally deleting or overwriting the math.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is this a subscription?</h3>
+        <p>No. Every calculator is a one-time purchase. Pay once, download the file, and it's yours to use for good.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I get future updates?</h3>
+        <p>Yes. If a calculator gets improved, you get the updated file free — just redownload it from the same link. No repurchase needed.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if I get stuck setting it up?</h3>
+        <p>Every calculator comes with a step-by-step Start Here guide tab that walks you through setup. Still stuck? <a href="https://payhip.com/ContractorCalculators/contact" style="color:inherit;">Reach out here</a> and we'll help you sort it out.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -488,11 +501,11 @@
     <div class="foot-row">
       <div>
         <div class="foot-brand">Contractor Calculators</div>
-        <div class="foot-meta">Pricing tools for the trades · Questions: <a href="mailto:tommyoman31@gmail.com" style="color:inherit;">tommyoman31@gmail.com</a></div>
+        <div class="foot-meta">Pricing tools for the trades</div>
       </div>
       <div class="foot-links">
-        <a href="#pricing">Pricing</a>
-        <a href="mailto:tommyoman31@gmail.com">Support</a>
+        <a href="#calculators">Calculators</a>
+        <a href="https://payhip.com/ContractorCalculators/contact">Support</a>
       </div>
     </div>
   </div>
