@@ -81,35 +81,14 @@
   .brand {
     display: flex;
     align-items: center;
-    gap: 16px;
     text-decoration: none;
   }
 
-  .brand-mark {
-    width: 46px;
-    height: 46px;
-    background: var(--marigold);
-    border-radius: 11px;
-    display: grid;
-    grid-template-rows: 12px 1fr;
-    gap: 4px;
-    padding: 6px;
-    flex-shrink: 0;
+  .brand-logo {
+    height: 40px;
+    width: auto;
+    display: block;
   }
-  .brand-mark .screen { background: var(--marigold-ink); border-radius: 3px; }
-  .brand-mark .keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
-  .brand-mark .keys div { background: var(--marigold-ink); border-radius: 2px; }
-
-  .brand-word {
-    font-family: var(--display);
-    font-weight: 900;
-    font-size: 26px;
-    line-height: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 0;
-    white-space: nowrap;
-  }
-  .brand-word .accent { color: var(--marigold); }
 
   header nav { display: flex; align-items: center; gap: 28px; }
   header nav a {
@@ -371,7 +350,7 @@
     .about-grid { grid-template-columns: 1fr; }
     .faq-grid { grid-template-columns: 1fr; gap: 28px; }
     header nav { display: none; }
-    .brand-word { font-size: 21px; }
+    .brand-logo { height: 32px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -382,11 +361,7 @@
 <header>
   <div class="wrap header-row">
     <a class="brand" href="#">
-      <span class="brand-mark" aria-hidden="true">
-        <span class="screen"></span>
-        <span class="keys"><div></div><div></div><div></div></span>
-      </span>
-      <span class="brand-word">Contractor <span class="accent">Calculators</span></span>
+      <img src="logo.png" alt="Contractor Calculators" class="brand-logo">
     </a>
     <nav>
       <a href="#calculators">Calculators</a>
