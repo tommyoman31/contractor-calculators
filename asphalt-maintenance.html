@@ -1,0 +1,68 @@
+<meta charset="utf-8">
+<title>Asphalt Maintenance Job Pricing Calculator — Contractor Calculators</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<header>
+  <div class="wrap header-row">
+    <a class="brand" href="index.html">
+      <img src="logo.png" alt="Contractor Calculators" class="brand-logo">
+    </a>
+    <nav>
+      <a href="index.html#calculators">Calculators</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="https://payhip.com/ContractorCalculators/contact" target="_blank" rel="noopener">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<main>
+  <section style="padding-bottom: 40px;">
+    <div class="wrap">
+      <a class="back-link" href="index.html#calculators">← All calculators</a>
+      <div class="product-embed-frame">
+        <div class="payhip-embed-page" data-key="wE6RA"></div>
+        <script type="text/javascript" src="https://payhip.com/embed-page.js?v=24u68985"></script>
+        <script>
+          // Payhip's loader binds init() to window "load", but since it injects
+          // its scripts asynchronously, that event has often already fired by
+          // the time init() is registered, so the widget never renders. Poll
+          // briefly and call it ourselves, guarding against a double-init in
+          // case the native "load" handler still fires too.
+          (function retryInit(attempts) {
+            var alreadyInitialized = document.querySelector('.payhip-embed-page iframe');
+            if (alreadyInitialized) return;
+            if (window.PayhipEmbedPage && typeof PayhipEmbedPage.init === 'function') {
+              PayhipEmbedPage.init();
+            } else if (attempts > 0) {
+              setTimeout(function () { retryInit(attempts - 1); }, 200);
+            }
+          })(25);
+        </script>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="stripe" style="margin-bottom:40px;" aria-hidden="true"></div>
+    <div class="foot-row">
+      <div>
+        <div class="foot-brand">Contractor Calculators</div>
+        <div class="foot-meta">Pricing tools for the trades</div>
+      </div>
+      <div class="foot-links">
+        <a href="index.html#calculators">Calculators</a>
+        <a href="https://payhip.com/ContractorCalculators/contact" target="_blank" rel="noopener">Support</a>
+      </div>
+    </div>
+  </div>
+</footer>
