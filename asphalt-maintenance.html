@@ -43,6 +43,25 @@
               setTimeout(function () { retryInit(attempts - 1); }, 200);
             }
           })(25);
+
+          // Payhip's embed is also supposed to auto-resize the iframe once its
+          // content loads, via a postMessage handshake from inside the iframe.
+          // That handshake doesn't appear to fire reliably, leaving the iframe
+          // collapsed at height 0. As a fallback, force a generous fixed height
+          // once the iframe exists, and allow scrolling inside it so nothing is
+          // ever cut off even if the real content runs longer.
+          (function fallbackSize(attempts) {
+            var iframe = document.querySelector('.payhip-embed-page iframe');
+            if (iframe) {
+              if (!iframe.getAttribute('height') || iframe.getAttribute('height') === '0') {
+                iframe.setAttribute('height', '1500');
+                iframe.setAttribute('scrolling', 'yes');
+                iframe.style.minHeight = '1500px';
+              }
+              return;
+            }
+            if (attempts > 0) setTimeout(function () { fallbackSize(attempts - 1); }, 200);
+          })(30);
         </script>
       </div>
     </div>
