@@ -392,13 +392,13 @@ footer { padding: 56px 0 64px; }
 .foot-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   flex-wrap: wrap;
   gap: 28px;
 }
 .foot-brand { font-family: var(--display); font-weight: 800; font-size: 18px; text-transform: uppercase; }
 .foot-meta { color: var(--ink-faint); font-size: 14px; margin-top: 6px; }
-.foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.foot-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .foot-links a { font-size: 14px; color: var(--ink-dim); text-decoration: none; }
 .foot-links a:hover, .foot-links a:focus-visible { color: var(--ink); }
 .foot-links a:focus-visible { outline: 2px solid var(--marigold); outline-offset: 3px; }
