@@ -1,0 +1,103 @@
+<meta charset="utf-8">
+<title>Contact — Contractor Calculators</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<header>
+  <div class="wrap header-row">
+    <a class="brand" href="index.html">
+      <img src="logo.png" alt="Contractor Calculators" class="brand-logo">
+    </a>
+    <nav>
+      <a href="index.html#calculators">Calculators</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<main>
+  <section>
+    <div class="wrap">
+      <a class="back-link" href="index.html">← Back home</a>
+      <div class="contact-shell">
+        <div class="eyebrow">Contact</div>
+        <h1 style="font-size: clamp(30px, 4vw, 42px); margin-bottom: 14px;">Questions? We're here to help.</h1>
+        <p style="color: var(--ink-dim); margin-bottom: 36px;">Send us a message using the form below and we'll get back to you.</p>
+
+        <form id="contact-form" action="https://formspree.io/f/mbgjlkkd" method="POST">
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="cf-submit">Send message</button>
+          <div id="contact-status" class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="stripe" style="margin-bottom:40px;" aria-hidden="true"></div>
+    <div class="foot-row">
+      <div>
+        <div class="foot-brand">Contractor Calculators</div>
+        <div class="foot-meta">Pricing tools for the trades</div>
+      </div>
+      <div class="foot-links">
+        <a href="index.html#calculators">Calculators</a>
+        <a href="contact.html">Support</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var form = document.getElementById('contact-form');
+  var statusEl = document.getElementById('contact-status');
+  var submitBtn = document.getElementById('cf-submit');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    statusEl.className = 'form-status';
+    statusEl.textContent = 'Sending…';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      submitBtn.disabled = false;
+      if (response.ok) {
+        form.reset();
+        statusEl.className = 'form-status success';
+        statusEl.textContent = "Thanks — your message is on its way. We'll get back to you soon.";
+      } else {
+        statusEl.className = 'form-status error';
+        statusEl.textContent = 'Something went wrong sending that. Please try again in a moment.';
+      }
+    }).catch(function () {
+      submitBtn.disabled = false;
+      statusEl.className = 'form-status error';
+      statusEl.textContent = 'Something went wrong sending that. Please try again in a moment.';
+    });
+  });
+</script>
