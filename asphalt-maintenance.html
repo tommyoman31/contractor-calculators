@@ -33,10 +33,13 @@
           // its scripts asynchronously, that event has often already fired by
           // the time init() is registered, so the widget never renders. Poll
           // briefly and call it ourselves, guarding against a double-init in
-          // case the native "load" handler still fires too.
+          // case the native "load" handler still fires too. Its own iframe
+          // always gets id="payhip_iframe_0" regardless of where it ends up
+          // in the DOM, so that's the reliable handle for everything below —
+          // a selector scoped to the wrapper div misses it once Payhip
+          // rewrites that div's contents.
           (function retryInit(attempts) {
-            var alreadyInitialized = document.querySelector('.payhip-embed-page iframe');
-            if (alreadyInitialized) return;
+            if (document.getElementById('payhip_iframe_0')) return;
             if (window.PayhipEmbedPage && typeof PayhipEmbedPage.init === 'function') {
               PayhipEmbedPage.init();
             } else if (attempts > 0) {
@@ -44,23 +47,55 @@
             }
           })(25);
 
-          // Payhip's embed is also supposed to auto-resize the iframe once its
-          // content loads, via a postMessage handshake from inside the iframe.
-          // That handshake doesn't appear to fire reliably, leaving the iframe
-          // collapsed at height 0. As a fallback, force a generous fixed height
-          // once the iframe exists, and allow scrolling inside it so nothing is
-          // ever cut off even if the real content runs longer.
-          (function fallbackSize(attempts) {
-            var iframe = document.querySelector('.payhip-embed-page iframe');
-            if (iframe) {
-              if (!iframe.getAttribute('height') || iframe.getAttribute('height') === '0') {
-                iframe.setAttribute('height', '1500');
-                iframe.setAttribute('scrolling', 'yes');
-                iframe.style.minHeight = '1500px';
-              }
+          (function watchIframe(attempts) {
+            var iframe = document.getElementById('payhip_iframe_0');
+            if (!iframe) {
+              if (attempts > 0) setTimeout(function () { watchIframe(attempts - 1); }, 200);
               return;
             }
-            if (attempts > 0) setTimeout(function () { fallbackSize(attempts - 1); }, 200);
+
+            // Payhip's script hard-codes the iframe to look like a floating
+            // card (max-width: 670px, rounded corners, drop shadow) via an
+            // inline style with !important — meant for embedding in a narrow
+            // sidebar, but it makes the product look like a boxed
+            // page-within-a-page here. Inline !important can only be beaten by
+            // another inline !important, so force our own values the same way,
+            // and keep re-applying them in case Payhip's script touches the
+            // style again later (e.g. when it sets the real height).
+            var overrides = { 'max-width': '100%', 'width': '100%', 'border-radius': '0', 'box-shadow': 'none' };
+            var declamp = function () {
+              Object.keys(overrides).forEach(function (prop) {
+                if (iframe.style.getPropertyValue(prop) !== overrides[prop]) {
+                  iframe.style.setProperty(prop, overrides[prop], 'important');
+                }
+              });
+            };
+            declamp();
+            new MutationObserver(declamp).observe(iframe, { attributes: true, attributeFilter: ['style'] });
+
+            // Payhip is also supposed to auto-resize the iframe's height once
+            // its content loads, via a postMessage handshake from inside the
+            // iframe. That handshake is unreliable on its own (sometimes never
+            // fires, leaving height stuck at 0) and, once we widen the iframe
+            // above, it can also mis-fire repeatedly and spiral to a huge
+            // bogus value. So: give it a couple seconds to report a real
+            // height, then lock whatever it landed on (clamped to a sane
+            // range, with a scrollbar as a safety net) and stop listening —
+            // avoids both failure modes without needing to know which one
+            // Payhip's script is about to hit.
+            setTimeout(function () {
+              var reported = parseInt(iframe.getAttribute('height'), 10);
+              var finalHeight = (reported && reported > 400 && reported < 6000) ? reported : 1600;
+              var lock = function () {
+                if (iframe.getAttribute('height') !== String(finalHeight)) {
+                  iframe.setAttribute('height', finalHeight);
+                }
+              };
+              lock();
+              iframe.setAttribute('scrolling', 'yes');
+              iframe.style.setProperty('min-height', finalHeight + 'px', 'important');
+              new MutationObserver(lock).observe(iframe, { attributes: true, attributeFilter: ['height'] });
+            }, 2200);
           })(30);
         </script>
       </div>

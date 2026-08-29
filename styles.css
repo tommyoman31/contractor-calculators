@@ -338,10 +338,14 @@ main#top { scroll-margin-top: 0; }
 .back-link:hover, .back-link:focus-visible { color: var(--ink); }
 
 .product-embed-frame {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 8px;
+  background: transparent;
+}
+
+.product-embed-frame iframe {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
 }
 
 /* ---------- footer ---------- */
