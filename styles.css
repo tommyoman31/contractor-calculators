@@ -403,6 +403,14 @@ footer { padding: 56px 0 64px; }
 .foot-links a:hover, .foot-links a:focus-visible { color: var(--ink); }
 .foot-links a:focus-visible { outline: 2px solid var(--marigold); outline-offset: 3px; }
 
+.foot-copyright {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
 @media (max-width: 780px) {
   .about-grid { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; gap: 28px; }
