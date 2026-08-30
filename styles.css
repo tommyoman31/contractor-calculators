@@ -235,10 +235,10 @@ main#top { scroll-margin-top: 0; }
   color: var(--sage-ink);
   font-family: var(--body);
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-size: 9px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 5px 10px;
+  padding: 4px 8px;
   border-radius: 999px;
 }
 
@@ -297,7 +297,7 @@ main#top { scroll-margin-top: 0; }
   font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--red);
+  color: var(--sage);
 }
 .calc-card .cc-cta {
   font-family: var(--body);
