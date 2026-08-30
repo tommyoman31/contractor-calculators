@@ -10,6 +10,7 @@
   --marigold-ink: #241d00;
   --sage: #93c47d;
   --sage-ink: #12240b;
+  --sage-bright: #4ade80;
   --red: #e06666;
 
   --display: "Big Shoulders Display", "Arial Narrow", Arial, sans-serif;
@@ -231,7 +232,7 @@ main#top { scroll-margin-top: 0; }
   position: absolute;
   top: 12px;
   right: 12px;
-  background: var(--sage);
+  background: var(--sage-bright);
   color: var(--sage-ink);
   font-family: var(--body);
   font-weight: 700;
@@ -297,7 +298,7 @@ main#top { scroll-margin-top: 0; }
   font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--sage);
+  color: var(--sage-bright);
 }
 .calc-card .cc-cta {
   font-family: var(--body);
