@@ -291,6 +291,14 @@ main#top { scroll-margin-top: 0; }
   font-size: 20px;
   font-weight: 600;
 }
+.calc-card .cc-price .cc-discount {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
 .calc-card .cc-cta {
   font-family: var(--body);
   font-weight: 700;
