@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contractor Calculators</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,14 +10,33 @@
     <a class="brand" href="#">
       <img src="logo.png" alt="Contractor Calculators" class="brand-logo">
     </a>
-    <nav>
+    <nav id="site-nav">
       <a href="#calculators">Calculators</a>
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
       <a href="contact.html">Contact</a>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+<script>
+  (function () {
+    var toggle = document.getElementById('nav-toggle');
+    var nav = document.getElementById('site-nav');
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
 
 <div class="stripe" aria-hidden="true"></div>
 
