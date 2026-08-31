@@ -192,6 +192,8 @@ main#top { scroll-margin-top: 0; }
 .section-head .eyebrow { margin-bottom: 14px; }
 .section-head h2 { font-size: clamp(30px, 3.6vw, 40px); margin-bottom: 14px; }
 .section-head p { color: var(--ink-dim); font-size: 17px; }
+#calculators .section-head { max-width: none; }
+#calculators .section-head p { white-space: nowrap; }
 
 /* ---------- calculator catalog ---------- */
 
@@ -446,6 +448,7 @@ footer { padding: 56px 0 64px; }
   .about-grid { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; gap: 28px; }
   .brand-logo { height: 32px; }
+  #calculators .section-head p { white-space: normal; }
 
   .nav-toggle { display: flex; }
 
