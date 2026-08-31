@@ -344,6 +344,32 @@ main#top { scroll-margin-top: 0; }
 .about-grid p:last-child { margin-bottom: 0; }
 .about-grid strong { color: var(--ink); font-weight: 600; }
 
+/* ---------- testimonial ---------- */
+
+.testimonial-quote {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+.testimonial-quote .eyebrow { display: flex; justify-content: center; }
+.testimonial-quote p {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.testimonial-quote cite {
+  display: block;
+  font-style: normal;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
 /* ---------- faq ---------- */
 
 .faq-grid {
