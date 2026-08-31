@@ -346,24 +346,24 @@ main#top { scroll-margin-top: 0; }
 
 /* ---------- testimonial ---------- */
 
-.testimonial-quote {
-  max-width: 680px;
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 900px;
   margin: 0 auto;
+}
+.testimonial-item {
   text-align: center;
 }
-.testimonial-quote .eyebrow { display: flex; justify-content: center; }
-.testimonial-quote h2 {
-  font-size: clamp(24px, 3vw, 34px);
-  margin-bottom: 24px;
-}
-.testimonial-quote p {
+.testimonial-item p {
   font-size: 18px;
   font-style: italic;
   line-height: 1.6;
   color: var(--ink-dim);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-.testimonial-quote cite {
+.testimonial-item cite {
   display: block;
   font-style: normal;
   font-family: var(--body);
