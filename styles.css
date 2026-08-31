@@ -355,6 +355,9 @@ main#top { scroll-margin-top: 0; }
 }
 .testimonial-item {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .testimonial-item p {
   font-size: 18px;
