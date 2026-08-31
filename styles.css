@@ -350,7 +350,7 @@ main#top { scroll-margin-top: 0; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 40px;
-  max-width: 900px;
+  max-width: 1040px;
   margin: 0 auto;
 }
 .testimonial-item {
