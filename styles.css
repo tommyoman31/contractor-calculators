@@ -406,14 +406,6 @@ main#top { scroll-margin-top: 0; }
 }
 .back-link:hover, .back-link:focus-visible { color: var(--ink); }
 
-.product-hero-image {
-  display: block;
-  width: 100%;
-  max-width: 560px;
-  margin: 0 auto 32px;
-  border-radius: 16px;
-}
-
 .product-embed-frame {
   background: transparent;
 }
