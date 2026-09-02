@@ -5,6 +5,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* Match the embedded Payhip page's own background so the iframe boundary doesn't read as a page-within-a-page */
+  html, body { background: #000; }
+</style>
 
 <header>
   <div class="wrap header-row">
@@ -45,6 +49,7 @@
   <section style="padding-bottom: 40px;">
     <div class="wrap">
       <a class="back-link" href="index.html#calculators">← All calculators</a>
+      <img src="asphalt-calculator-cover.png" alt="Asphalt Maintenance Job Pricing Calculator" class="product-hero-image">
       <div class="product-embed-frame">
         <div class="payhip-embed-page" data-key="wE6RA"></div>
         <script type="text/javascript" src="https://payhip.com/embed-page.js?v=24u68985"></script>
@@ -119,7 +124,7 @@
           })(30);
         </script>
       </div>
-      <p class="product-contact-note">Have questions before you buy? <a href="contact.html">Contact us</a> and we'll help you out.</p>
+      <p class="product-contact-note">Have questions? <a href="contact.html">Contact Us</a> — We're happy to help</p>
     </div>
   </section>
 </main>
