@@ -187,6 +187,8 @@ header nav a:focus-visible { outline: 2px solid var(--marigold); outline-offset:
 
 section { padding: 76px 0; scroll-margin-top: 92px; }
 main#top { scroll-margin-top: 0; }
+/* footer's own 56px top padding stacks below this section, so trim here to match the 76px gap above the card */
+#newsletter { padding-bottom: 20px; }
 .section-head { max-width: 620px; margin-bottom: 48px; }
 .section-head.centered { max-width: 640px; margin-left: auto; margin-right: auto; text-align: center; }
 .section-head .eyebrow { margin-bottom: 14px; }
