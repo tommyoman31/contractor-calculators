@@ -417,6 +417,22 @@ main#top { scroll-margin-top: 0; }
   border-radius: 0 !important;
 }
 
+.product-contact-note {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 15px;
+  color: var(--ink-dim);
+}
+.product-contact-note a {
+  color: var(--marigold);
+  font-weight: 600;
+  text-decoration: none;
+}
+.product-contact-note a:hover,
+.product-contact-note a:focus-visible {
+  text-decoration: underline;
+}
+
 /* ---------- contact ---------- */
 
 .contact-shell { max-width: 560px; }
