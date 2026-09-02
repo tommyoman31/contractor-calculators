@@ -139,7 +139,7 @@ header nav a:focus-visible { outline: 2px solid var(--marigold); outline-offset:
 .eyebrow {
   font-family: var(--body);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 17px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--marigold);
