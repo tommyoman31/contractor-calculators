@@ -240,10 +240,10 @@ main#top { scroll-margin-top: 0; }
   color: var(--sage-ink);
   font-family: var(--body);
   font-weight: 700;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: 999px;
 }
 
