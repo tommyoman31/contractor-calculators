@@ -270,7 +270,7 @@ main#top { scroll-margin-top: 0; }
 }
 .calc-card .cc-desc {
   color: var(--ink-dim);
-  font-size: 14.5px;
+  font-size: 12.5px;
   margin-bottom: 20px;
   flex: 1;
 }
