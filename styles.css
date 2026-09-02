@@ -311,6 +311,12 @@ main#top { scroll-margin-top: 0; }
   border-radius: 8px;
   white-space: nowrap;
 }
+.calc-card .cc-note {
+  margin-top: 10px;
+  font-family: var(--body);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
 
 /* coming soon card */
 .calc-card.soon {
