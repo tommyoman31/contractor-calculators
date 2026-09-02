@@ -196,7 +196,7 @@ main#top { scroll-margin-top: 0; }
 .section-head p { color: var(--ink-dim); font-size: 17px; }
 #calculators .section-head { max-width: none; }
 #calculators .section-head p { white-space: nowrap; }
-#calculators .section-head p strong { color: var(--marigold); font-weight: 700; }
+#calculators .section-head p strong { color: var(--sage); font-weight: 700; }
 
 /* ---------- calculator catalog ---------- */
 
